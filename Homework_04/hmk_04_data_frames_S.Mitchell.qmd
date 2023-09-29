@@ -1,0 +1,84 @@
+---
+title: "Hmk_04 template: Data frames and data wrangling"
+format: gfm
+editor: visual
+---
+
+Please read the entire [R for Data Science](https://r4ds.hadley.nz/data-transform) before you do this homework.
+
+This homework relies on the `nycflights13` package, which contains several data frames, including `airlines`, `airports`, `flights`, `planes`, and `weather`. Loading `nycflights13` (`library(nycflights13)`) puts all of these data frames on the search path.
+
+## Installing data packages
+
+Remember that any package needs to be installed only once (per version of R), but needs to be loaded every time we start a new R session.
+
+To install `nyclflights13`, use `install.packages("nycflights13")` (with quotation marks). To load it, use `library(nycflights13)`.
+
+# Question 1: filtering
+
+Make a plot of air time as a function of distance (air time on the y axis, distance on the x axis) for all flights that meet the following criteria:
+
+-   originate from LaGuardia airport ("LGA")
+-   departed on the 16th of the month
+-   have a flight distance of less than 2000
+
+First, we load the proper data set.
+
+```{r}
+library(tidyverse)
+library(nycflights13)
+```
+
+Next, we can look at this data using the glimpse function.
+
+```{r}
+glimpse(flights)
+```
+
+Now, we can create an object that consists of flights filtered to only contain the flights that originate from LaGuardia, departed on the 16th of the month, and have a flight distance of less than 2000.
+
+```{r}
+Flights_LGA_Day16_2000m <- flights |>
+  filter(origin == "LGA", day == 16, distance < 2000) 
+
+```
+
+Now, we use ggplot to plot the filtered flights as a function of distance with air time on the y axis and distance on the x axis.
+
+```{r}
+ggplot(Flights_LGA_Day16_2000m, aes(x = distance, y = air_time)) + 
+  geom_point() + 
+  ggtitle("LGA Flights, < 2000 miles, Departure = 16")
+```
+
+# Question 2: dealing with NAs
+
+Make a data frame of all of the rows of `flights` that have values for *both* `arr_time` and `dep_time` - that is, neither of those values are `NA`.
+
+We can make a data frame for all flights that contain information on their arrival time and departure time by omitting the flights that have no specified values for these variables and then print the resulting tibble. Note, we want to use the filter function here and not na.omit because the omit function is in base R, while the filter function is meant for tidyverse.
+
+```{r}
+Has_Arrival_and_Departure <- flights |> 
+  filter(!is.na(arr_time), !is.na(dep_time))
+print(Has_Arrival_and_Departure)
+```
+
+## filtering NAs
+
+`ggplot()` will automatically remove NA values from the plot, as you may have seen in question 1, but it emits a warning message about that. Of course you could silence the warning message using [chunk options](https://bookdown.org/yihui/rmarkdown-cookbook/chunk-options.html), but how could you prevent them from appearing in the first place?
+
+To remove NA's pre-plotting, we could just filter the flight data as done above, but for all variables.
+
+# Question 3: adding columns
+
+Create a data frame of average flight speeds, based on `air_time` and `distance`. Make either a histogram or a density plot of the data. If you like, you may break the data out (e.g. by airline, or some other variable) in a way that you think makes sense.
+
+To create a data frame of average flight speeds, I can mutate the flights database to add a column. Then, I can plot these values as a histogram.
+
+```{r}
+average_flight_speed = flights |> mutate(flight_speed = distance / air_time)
+print(average_flight_speed)
+ggplot(average_flight_speed, aes(x = flight_speed)) + 
+  geom_histogram() 
+
+```
