@@ -2,10 +2,12 @@
 
 ## Unsuccessful Figure:
 
-![](images/Compartive_whole_genome-01.webp)Figure from: Zoccarato, L.,
-Sher, D., Miki, T., Segrè, D. and Grossart, H.P., 2022. A comparative
-whole-genome approach identifies bacterial traits for marine microbial
-interactions. *Communications Biology*, *5*(1), p.276.
+![](images/Compartive_whole_genome.webp)
+
+Figure from: Zoccarato, L., Sher, D., Miki, T., Segrè, D. and Grossart,
+H.P., 2022. A comparative whole-genome approach identifies bacterial
+traits for marine microbial interactions. *Communications
+Biology*, *5*(1), p.276.
 
 **Why is this figure unsuccessful?**
 
@@ -38,9 +40,7 @@ interactions. *Communications Biology*, *5*(1), p.276.
 
 ## Successful Figure:
 
-<img src="images/Tree_Life-01.jpeg" data-fig-align="center" />
-
-<img src="images/Tree_Life-01.jpeg" data-fig-align="center" />
+<img src="images/Tree_Life.jpeg" data-fig-align="center" />
 
 Figure from: Hug, L.A., Baker, B.J., Anantharaman, K., Brown, C.T.,
 Probst, A.J., Castelle, C.J., Butterfield, C.N., Hernsdorf, A.W., Amano,
