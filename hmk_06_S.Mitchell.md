@@ -2,12 +2,10 @@
 
 ## Unsuccessful Figure:
 
-![](images/Compartive_whole_genome.webp?raw=true)
-
-Figure from: Zoccarato, L., Sher, D., Miki, T., Segrè, D. and Grossart,
-H.P., 2022. A comparative whole-genome approach identifies bacterial
-traits for marine microbial interactions. *Communications
-Biology*, *5*(1), p.276.
+![](images/Compartive_whole_genome-01.webp)Figure from: Zoccarato, L.,
+Sher, D., Miki, T., Segrè, D. and Grossart, H.P., 2022. A comparative
+whole-genome approach identifies bacterial traits for marine microbial
+interactions. *Communications Biology*, *5*(1), p.276.
 
 **Why is this figure unsuccessful?**
 
@@ -31,7 +29,7 @@ Biology*, *5*(1), p.276.
 
 - Interaction traits colored with sequential color scale; however,
   information is not representative of a quantitative gradient. Human
-  perception encourages us to see a relationship gradient that isn't
+  perception encourages us to see a relationship gradient that isn’t
   there.
 
 - Color as a highlight: chosen highlight colors do not equally draw eye
@@ -40,7 +38,9 @@ Biology*, *5*(1), p.276.
 
 ## Successful Figure:
 
-![](images/Tree_Life.jpeg?raw=true)
+<img src="images/Tree_Life-01.jpeg" data-fig-align="center" />
+
+<img src="images/Tree_Life-01.jpeg" data-fig-align="center" />
 
 Figure from: Hug, L.A., Baker, B.J., Anantharaman, K., Brown, C.T.,
 Probst, A.J., Castelle, C.J., Butterfield, C.N., Hernsdorf, A.W., Amano,
