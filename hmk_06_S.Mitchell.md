@@ -2,7 +2,7 @@
 
 ## Unsuccessful Figure:
 
-![](images/Compartive_whole_genome.webp)
+![](images/Compartive_whole_genome.webp)?raw=true
 
 Figure from: Zoccarato, L., Sher, D., Miki, T., Segrè, D. and Grossart,
 H.P., 2022. A comparative whole-genome approach identifies bacterial
@@ -40,7 +40,7 @@ Biology*, *5*(1), p.276.
 
 ## Successful Figure:
 
-![](images/Tree_Life.jpeg)
+![](images/Tree_Life.jpeg)?raw=true
 
 Figure from: Hug, L.A., Baker, B.J., Anantharaman, K., Brown, C.T.,
 Probst, A.J., Castelle, C.J., Butterfield, C.N., Hernsdorf, A.W., Amano,
