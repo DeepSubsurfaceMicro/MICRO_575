@@ -47,7 +47,7 @@ rm(list=ls())
     getwd()
     ```
 
-        [1] "/Users/sarinamitchell/SP_2023_Coursework/MICRO_575"
+        [1] "/Users/sarinamitchell/SP_2023_Coursework/MICRO_575/Homework_03"
 
     The current output of this function is
     “/Users/sarinamitchell/SP_2023_Coursework/MICRO_575”. This directory
@@ -226,18 +226,12 @@ ggplot(data = penguins,
   geom_smooth()
 ```
 
-    `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
-
-    Warning: Removed 2 rows containing non-finite values (`stat_smooth()`).
-
-    Warning: Removed 2 rows containing missing values (`geom_point()`).
-
 ![](hmk_03_S.Mitchell_files/figure-commonmark/unnamed-chunk-16-1.png)
 
 The code is saying use ggplot to plot out values from the dataset
 penguins by mapping the x-axis as the flipper length and the y-axis as
 the body mass with bill depth values as the color scale. We are
-performing aestetic mapping, this means we are creating a visual image
+performing aesthetic mapping, this means we are creating a visual image
 of our variables with reasonable scales and labels. The geom_smooth is
 giving the dark grey model fit of the data points and the geom_point is
 saying plot the values as points (we could change the size of the points
