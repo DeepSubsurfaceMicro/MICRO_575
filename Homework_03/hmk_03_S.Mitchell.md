@@ -228,14 +228,14 @@ ggplot(data = penguins,
 
 ![](hmk_03_S.Mitchell_files/figure-commonmark/unnamed-chunk-16-1.png)
 
-![](000012.png)The code is saying use ggplot to plot out values from the
-dataset penguins by mapping the x-axis as the flipper length and the
-y-axis as the body mass with bill depth values as the color scale. We
-are performing aesthetic mapping, this means we are creating a visual
-image of our variables with reasonable scales and labels. The
-geom_smooth is giving the dark grey model fit of the data points and the
-geom_point is saying plot the values as points (we could change the size
-of the points if we wanted to.
+The code is saying use ggplot to plot out values from the dataset
+penguins by mapping the x-axis as the flipper length and the y-axis as
+the body mass with bill depth values as the color scale. We are
+performing aesthetic mapping, this means we are creating a visual image
+of our variables with reasonable scales and labels. The geom_smooth is
+giving the dark grey model fit of the data points and the geom_point is
+saying plot the values as points (we could change the size of the points
+if we wanted to.
 
 2.  Explain why each aesthetic is mapped at the level that it is (i.e.,
     at the global level, in the `ggplot()` function call, or at the geom
