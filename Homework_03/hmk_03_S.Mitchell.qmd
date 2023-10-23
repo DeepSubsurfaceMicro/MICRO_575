@@ -138,7 +138,7 @@ library(tidyverse)
 
 2.  Recreate the visualization of `body_mass_g` to `flipper_length_mm`, from the penguins data set, that is shown in question 8 of section 2.2.5 of [R4DS](https://r4ds.hadley.nz/data-visualize).
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(tidyverse)
 library(palmerpenguins)
 glimpse(penguins)
@@ -148,7 +148,7 @@ ggplot(data = penguins,
   geom_smooth()
 ```
 
-The code is saying use ggplot to plot out values from the dataset penguins by mapping the x-axis as the flipper length and the y-axis as the body mass with bill depth values as the color scale. We are performing aestetic mapping, this means we are creating a visual image of our variables with reasonable scales and labels. The geom_smooth is giving the dark grey model fit of the data points and the geom_point is saying plot the values as points (we could change the size of the points if we wanted to.
+The code is saying use ggplot to plot out values from the dataset penguins by mapping the x-axis as the flipper length and the y-axis as the body mass with bill depth values as the color scale. We are performing aesthetic mapping, this means we are creating a visual image of our variables with reasonable scales and labels. The geom_smooth is giving the dark grey model fit of the data points and the geom_point is saying plot the values as points (we could change the size of the points if we wanted to.
 
 2.  Explain why each aesthetic is mapped at the level that it is (i.e., at the global level, in the `ggplot()` function call, or at the geom level, in the `geom_XXX()` function call). Note: A lot of different options will work, but some options are clearly better than others.
 
