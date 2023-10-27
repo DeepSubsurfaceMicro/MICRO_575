@@ -1,0 +1,35 @@
+---
+title: "Homework 2"
+format: gfm
+editor: visual
+---
+
+## Assignment Directions:
+
+There are two parts to this assignment:
+
+1.) Write a response to the articles from the Economist, the Conversation, and a technical paper as listed below.
+
+2.) Write your response in a Quarto document, compile it to Github-flavored markdown, and post it to your github repository. 
+
+**Write** one paragraph on each of the following topics. Write this in a Quarto document, and be sure to change the form:
+
+## Written Responses:
+
+**1.) What were the main issues in the Reinhard and Rogoff issue, and how best could they have been avoided?**
+
+The main issues and how they can be mitigated in the 'Reinhard and Rogoff issue,' depends on how you define/identify the 'issue' itself. If the Reinhard and Rogoff issue refers to a calculation/coding error made by the authors in piece of published scientific literature, then the primary issue was that the data was not readily available in a way that it could be checked for containing coding errors. As described in "The 90% question" in *The Economist*, Reinhard and Rogoff assert that post-war, borrowers continue to borrow until debt reaches a 90% threshold when borrowing slows. However, new research claims the Reinhard-Rogoff conclusion was erroneous since excel errors caused multiple pieces of critical data to be removed from the analysis and overweighted the influence of atypical values. Instead, the primary conclusion in Reinhard and Rogoff's original work should have been that borrowing continued positively, past the 90% threshold. While it is certainly problematic incorrect conclusions were published, the primary issue is not that an error in data analysis occurred, but that this error in data analysis was not caught through the peer review process. According to Borwein and Bailey in *The Conversation*, the primary issue lies in the lack of rigorous standards regarding computational data. Ultimately, many disciplines in science are increasingly integrating the use of sophisticated computational tools into research and becoming more dependent on such computational analysis. We as scientists, and the scientific process or peer review, must evolve as well to ensure modern analysis is tractable, reproducible, and fully reviewable.
+
+**2.) What key attributes make a piece of data analysis "reproducible"? Please put those attributes in a prioritized list (i.e., for you, what is most important, next most important, etc\...)**
+
+At the broadest level, for data analysis to be reproducible, the data itself must be available and the process used to transform the data must be clear and available as well. The following are attributes of reproducible data:
+
+1.  All data used for analysis is available.
+2.  All code used on the raw data is available.
+3.  All steps taken on the data are clearly detailed.
+4.  The programs necessary to perform the analysis are free, open sourced, and available.
+5.  There is a point of contact for individuals to reach out to with questions regarding the data/analysis.
+
+**2.) Imagine that you are doing a piece of data analysis that only you will ever see: perhaps you are shopping for a car and trying to determine what will give you the best value for your money. Should you think about making your data analysis reproducible? Why or why not?**
+
+Assuming there is an instance where I perform data analysis that only I will ever view, whether or not I make the data analysis reproducible depends on an internal cost-benefit analysis based on a variety of factors. Namely, how likely I am to perform the analysis again, how much additional time does it take to make the analysis reproducible relative to completing the task, will making my analysis reproducible ultimately shorten the amount of time it takes to repeat the analysis in the future, and irrespective of the answers to the previous questions, does my analysis need to be reproducible for completely a different future task? For instance, analysis that I perform many times, where making my analysis reproducible would only add time to complete the task and not limit the number of times it takes in the future, I would not make reproducible. Conversely, analysis that I may repeat in the future, where the task is long relative to the amount of time it takes to make reproducible, and that would greatly be shortened if repeated, I am likely to make reproducible. For example, I play a video game where on rare occasions there are timed events that provide many in-game prizes. These timed events are usually days long and completing them effectively to maximize prizes required a fair amount of calculations. Recently, the event was repeated, and by viewing my notes from the time I participated in the event previously, I was able to win all of the prizes as I knew how to best maximize prizes and time.
