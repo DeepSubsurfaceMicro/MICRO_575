@@ -1,0 +1,175 @@
+---
+title: "HMK 5: Reading and tidying data"
+format: gfm
+---
+
+# Reading
+
+-   [R4DS Chapters 6-9](https://r4ds.hadley.nz/data-import)
+
+# Data import
+
+## Q1:
+
+-   Create a directory, within your main class directory, called `data`.
+
+    -   Note: in general, you should store raw data in a directory called `data`.
+
+-   Download the example file for Ch 9 [here](https://pos.it/r4ds-students-csv). Save it inside the `ddata` directory.
+
+-   Use `read_csv()` to read the file to an R data frame. Follow the instructions in Ch 9 to format it properly. Follow the directions in Ch 9 to make sure the following are true:
+
+    -   Column names should be *syntactic*, meaning they don't contain spaces.
+    -   N/A values should be represented with the R value `NA`, not the character "N/A".
+    -   Data types (character vs factor vs numeric) should be appropriate.
+
+    First, make a directory called 'Data' within the MICRO_575 directory using the mkdir command (I did this via terminal). The data that is stated to be in Ch 9 is actually in 8.2. Download the students CSV file into the created data directory. There are only two choices to save this file, as Page Source or Web Archive on safari. However, after some fiddling, I have realized that using chrome the data can be saved directly as a .csv file. To read the file into R, use the read_csv command and make sure that the file path is to the data directory that I created. We can now view this tibble.
+
+```{r}
+library(tidyverse)
+Students <- read_csv("/Users/sarinamitchell/SP_2023_Coursework/MICRO_575/Data/students.csv") 
+Students
+
+
+```
+
+To make sure we are representing N/A values with the R value NA, unlike the default of only recognizing empty strings. So, we specify when reading this file to acknowledge those values. We can now see that the N/A value is changed to NA.
+
+```{r}
+Students <- read_csv("/Users/sarinamitchell/SP_2023_Coursework/MICRO_575/Data/students.csv", na = c("N/A", ""))
+Students
+```
+
+To make sure the column names are syntactic, we have to rename the variables with backticks surrounding them so that they no longer contain spaces.
+
+```{r}
+Students |> 
+  rename(
+    student_id = `Student ID`,
+    full_name = `Full Name`
+  )
+```
+
+We could repeat the above code to rename all of the variable with snakecase; however, we can do this all at once to save time. But, we will need to install the janitor package first. After installing janitor, we see that we can quickly change all of the variables to have underscores instead of having random formatting.
+
+```{r}
+Students <- Students |> janitor::clean_names()
+Students
+```
+
+I realize there is a typo in the favorite food variable name, so I will quickly fix this.
+
+```{r}
+Students <- Students |> 
+  rename(
+    favorite_food = 'favourite_food'
+  )
+print(Students)
+
+```
+
+Next, we need to change of a few of the variable types to make them appropriate. We will change the meal_plan variable to a factor type, and the age variable to a double using mutate while correcting the written "five" in the dataset under the age column.
+
+```{r}
+Students <- Students |>
+  mutate(meal_plan = factor(meal_plan), 
+         age = parse_number(if_else(age == "five", "5", age))) |>
+  mutate(age = as.numeric(age))
+print(Students)
+       
+```
+
+## Q2
+
+Find (or make) a data file of your own, in text format. Read it into a well-formatted data frame.
+
+# Tidying
+
+Download the data set available at <https://tiny.utk.edu/MICR_575_hmk_05>, and save it to your `data` folder. **This is a real data set:** it is the output from the evaluation forms for student colloquium speakers in the Microbiology department. I have eliminated a few columns, changed some of the scores, and edited comments, to protect student privacy, but the output is real.
+
+First, open this .csv file with Microsoft Excel or a text reading app, to get a sense of the structure of the document. It is weird.
+
+Why is the file formatted so inconveniently? I have no idea, but I do know that this is about an average level of inconvenient formatting for real data sets you will find in the wild.
+
+*Note: In theory, you can pass a URL to `read_csv()` and read the file directly from the internet. In practice, that doesn't seem to work for this file. So you'll want to download this file to your hard drive.*
+
+We (me and my group member) believe the data type in the cells is based on a JSON object (JavaScript Object Notation) and because of this it is not meaningfully converted to a CSV file. These types of data files are used to exchange information from web-based applications. As a result, the file is inconveniently formatted. For example, the columns are poorly named, there are unnecessary spacing in the rows, some columns appear to have multiple names, and cells are empty. Particularly problematic is that the actual data presented as numerical values actually represent categorical data and we don't actually know what the true meaning of the data is.
+
+## Q3a
+
+Next, use `read_csv()` to read the data into a data frame. Note that you'll need to make use of some of the optional arguments. Use `?read_csv` to see what they are.
+
+*If you are struggling with this task, email me for hints.*
+
+As we discussed in class, the correct shape depends on what you want to do with the data. Use `pivot_longer()` to make the data frame longer, in a way that makes sense.
+
+```{r}
+library(tidyverse)
+Colloquium_Assessment <- read_csv("/Users/sarinamitchell/SP_2023_Coursework/MICRO_575/Data/colloquium_assessment.csv", skip_empty_rows = TRUE)
+print(Colloquium_Assessment)
+
+```
+
+First, I'm going to go ahead and clean-up the names of the columns.
+
+```{r}
+Colloquium_Assessment_clean <- Colloquium_Assessment |> janitor::clean_names()
+Colloquium_Assessment
+```
+
+Next, I'm going to remove the first four rows of the columns as they are uninformative and redundant.
+
+```{r}
+Colloquium_Assessment_start_R4 <- Colloquium_Assessment_clean |>
+  filter(!row_number() %in% c(1:4)) 
+glimpse(Colloquium_Assessment_start_R4)
+```
+
+Select the odd rows to remove the empty rows and select the empty columns to remove them.
+
+```{r}
+Colloquium_Assessment_start_R4_odd <- seq_len(nrow(Colloquium_Assessment_start_R4)) %% 2
+Colloquium_Assessment_start_R4_no_odd <- Colloquium_Assessment_start_R4[Colloquium_Assessment_start_R4_odd == 0, ] 
+Colloquium_Assessment_start_R4_no_odd_no_empty <- subset(Colloquium_Assessment_start_R4_no_odd, select = -c(recipient_last_name:external_reference))
+glimpse(Colloquium_Assessment_start_R4_no_odd_no_empty)
+```
+
+Finally, we can pivot the data.
+
+```{r}
+Colloquium_Assessment_tidy <- Colloquium_Assessment_start_R4_no_odd_no_empty |>
+  pivot_longer(cols = starts_with("q"),
+               names_to = "question",
+               values_to = "answer")
+glimpse(Colloquium_Assessment_tidy)
+```
+
+## Q3b
+
+Finally, calculate this student's average score for each of questions 7-10.
+
+First, we select the subset of questions 7-10 from our dataframe and change the answers to numeric values so they can be used in calculations.
+
+```{r}
+questions_7_8_9_10 <- Colloquium_Assessment_tidy |>
+  filter(question == "q7" | question == "q8" | question == "q9" | question == "q10") |>
+  arrange(question)
+questions_7_8_9_10_num <- transform(questions_7_8_9_10, answer = as.numeric(questions_7_8_9_10$answer))
+```
+
+Now we can find the average.
+
+```{r}
+average_questions_7_8_9_10 <- summarize(questions_7_8_9_10_num, 
+                                        average_score = mean(answer),
+                                        .by = question)
+print(average_questions_7_8_9_10)
+```
+
+## Important note about file paths in Quarto documents
+
+When you render a Quarto document, RStudio spins up a new instance of R, which is separate from the instance of R that you cna interact with. The working directory for this instance of R is whatever directory your Quarto document is saved in.
+
+If your quarto document is saved in the same directory as your RStudio project (e.g., `MICR_475`), then there is no difference between your interactive working directory and the working directory for your Quarto document.
+
+However, if your homeworks are saved in a `HMK` directory, then the Quarto working directory will be `HMK`. To access the saved `.csv` file, `read_csv()` will need to look *up* one directory and then go back *down* into `HMK`. `..` means "up one directory", so you would need to use `read_csv("../colloquium_assessment.csv")` instead of `read_csv("colloquium_assessment.csv")`.
